@@ -6,8 +6,8 @@ import { Store } from '@ngrx/store';
   selector: 'app-root',
   template: `
     <div class="container">
-      <app-sign-in></app-sign-in>
-      <app-profile></app-profile>
+      <app-sign-in *ngIf="!user"></app-sign-in>
+      <app-profile *ngIf="user"></app-profile>
       <pre>{{ user | json }}</pre>
     </div>
   `,

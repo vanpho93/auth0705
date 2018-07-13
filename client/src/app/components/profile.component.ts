@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { AppState, User } from '../types';
+import { Store } from '@ngrx/store';
 
 @Component({
     selector: 'app-profile',
@@ -6,11 +8,18 @@ import { Component } from '@angular/core';
         <div>
             <h1>Profile Page</h1>
             <div>
-                <h4>Name: Teo Nguyen</h4>
-                <p>Name: Teo Nguyen</p>
+                <h4>Name: {{ user.name }}</h4>
+                <p>email: {{ user.email }}</p>
+                <img src="{{ user.avatar }}" />
             </div>
         </div>
     `
 })
 
-export class ProfileComponent {}
+export class ProfileComponent {
+    user: User;
+
+    constructor(private store: Store<AppState>) {
+        this.store.select('user').subscribe(u => this.user = u);
+    }
+}
