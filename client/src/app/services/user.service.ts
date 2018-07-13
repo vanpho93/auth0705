@@ -12,7 +12,22 @@ export class UserService {
         this.request.post('/user/signin', { email, password })
         .then(response => {
             this.store.dispatch({ type: 'SET_USER', user: response.user });
+            localStorage.setItem('token', response.user.token);
         })
         .catch(error => alert(error.message));
+    }
+
+    check() {
+        const token = localStorage.getItem('token');
+        if (!token) return console.log('Khong co token.');
+        this.request.post('/user/check', { token: localStorage.getItem('token') })
+        .then(response => {
+            this.store.dispatch({ type: 'SET_USER', user: response.user });
+            localStorage.setItem('token', response.user.token);
+        })
+        .catch(error => {
+            localStorage.removeItem('token');
+            console.log(error.message);
+        });
     }
 }
