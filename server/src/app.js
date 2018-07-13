@@ -9,6 +9,7 @@ const { friendRouter } = require('./routers/friend.router');
 const app = express();
 app.use(cors());
 app.use(json());
+app.use((req, res, next) => setTimeout(next, 1000));
 
 app.use((req, res, next) => {
     res.onError = error => {

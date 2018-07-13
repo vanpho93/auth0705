@@ -19,7 +19,10 @@ export class UserService {
 
     check() {
         const token = localStorage.getItem('token');
-        if (!token) return console.log('Khong co token.');
+        if (!token) {
+            this.store.dispatch({ type: 'LOADED' });
+            return console.log('Khong co token.');
+        }
         this.request.post('/user/check', { token: localStorage.getItem('token') })
         .then(response => {
             this.store.dispatch({ type: 'SET_USER', user: response.user });
@@ -28,6 +31,12 @@ export class UserService {
         .catch(error => {
             localStorage.removeItem('token');
             console.log(error.message);
-        });
+        })
+        .then(() => this.store.dispatch({ type: 'LOADED' }));
+    }
+
+    logOut() {
+        localStorage.removeItem('token');
+        this.store.dispatch({ type: 'LOG_OUT' });
     }
 }
