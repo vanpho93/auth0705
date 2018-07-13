@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import { UserService } from '../services/user.service';
 
 @Component({
     selector: 'app-sign-in',
@@ -26,7 +27,10 @@ export class SignInComponent {
         password: new FormControl('123'),
     });
 
+    constructor(private userSerivce: UserService) {}
+
     signIn() {
-        alert(JSON.stringify(this.formsignIn.value));
+        const { email, password } = this.formsignIn.value;
+        this.userSerivce.signIn(email, password);
     }
 }

@@ -1,10 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { SignInComponent } from './components/sign-in.component';
 import { ProfileComponent } from './components/profile.component';
+
+import { RequestService } from './services/request.service';
+import { UserService } from './services/user.service';
 
 @NgModule({
   declarations: [
@@ -15,9 +19,10 @@ import { ProfileComponent } from './components/profile.component';
   imports: [
     BrowserModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpModule
   ],
-  providers: [],
+  providers: [RequestService, UserService],
   bootstrap: [AppComponent]
 })
 
