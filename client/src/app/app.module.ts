@@ -11,6 +11,7 @@ import { HomeComponent } from './components/home.component';
 import { ForgotPasswordComponent } from './components/forgot-password.component';
 import { FriendsComponent } from './components/friends.component';
 import { SignUpComponent } from './components/sign-up.component';
+import { NavComponent } from './components/nav.component';
 
 import { RequestService } from './services/request.service';
 import { UserService } from './services/user.service';
@@ -25,7 +26,8 @@ import { loadedReducer, userReducer } from './reducers';
     HomeComponent,
     ForgotPasswordComponent,
     FriendsComponent,
-    SignUpComponent
+    SignUpComponent,
+    NavComponent
   ],
   imports: [
     BrowserModule,
