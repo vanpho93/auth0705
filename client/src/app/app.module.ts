@@ -13,13 +13,13 @@ import { ForgotPasswordComponent } from './components/forgot-password.component'
 import { FriendsComponent } from './components/friends.component';
 import { SignUpComponent } from './components/sign-up.component';
 import { PageNotFoundComponent } from './components/page-not-found.component';
-
 import { NavComponent } from './components/nav.component';
 
 import { RequestService } from './services/request.service';
 import { UserService } from './services/user.service';
-
 import { loadedReducer, userReducer } from './reducers';
+import { MustBeGuestGuard } from './guards/must-be-guest.guard';
+import { MustBeUserGuard } from './guards/must-be-user.guard';
 
 const routesConfig: Routes = [
   { path: '', component: HomeComponent },
@@ -51,7 +51,7 @@ const routesConfig: Routes = [
     RouterModule.forRoot(routesConfig),
     StoreModule.forRoot({ loaded: loadedReducer, user: userReducer })
   ],
-  providers: [RequestService, UserService],
+  providers: [RequestService, UserService, MustBeGuestGuard, MustBeUserGuard],
   bootstrap: [AppComponent]
 })
 
