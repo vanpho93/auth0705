@@ -7,6 +7,10 @@ import { StoreModule } from '@ngrx/store';
 import { AppComponent } from './app.component';
 import { SignInComponent } from './components/sign-in.component';
 import { ProfileComponent } from './components/profile.component';
+import { HomeComponent } from './components/home.component';
+import { ForgotPasswordComponent } from './components/forgot-password.component';
+import { FriendsComponent } from './components/friends.component';
+import { SignUpComponent } from './components/sign-up.component';
 
 import { RequestService } from './services/request.service';
 import { UserService } from './services/user.service';
@@ -17,7 +21,11 @@ import { loadedReducer, userReducer } from './reducers';
   declarations: [
     AppComponent,
     SignInComponent,
-    ProfileComponent
+    ProfileComponent,
+    HomeComponent,
+    ForgotPasswordComponent,
+    FriendsComponent,
+    SignUpComponent
   ],
   imports: [
     BrowserModule,
