@@ -19,6 +19,7 @@ import { UserService } from '../services/user.service';
             </li>
           <li><a routerLink="/profile" routerLinkActive="active">Profile</a></li>
           <li><a routerLink="/friends" routerLinkActive="active">Friends</a></li>
+          <li><a (click)="logOut();" style="cursor: pointer;">Log out</a></li>
         </ul>
         <ul class="nav navbar-nav" *ngIf="!user">
             <li>
@@ -41,4 +42,6 @@ export class NavComponent {
   constructor(private userSerivce: UserService, private store: Store<AppState>) {
     this.store.select('user').subscribe(u => this.user = u);
   }
+
+  logOut() { this.userSerivce.logOut(); }
 }
