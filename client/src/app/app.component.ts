@@ -11,6 +11,10 @@ import { UserService } from './services/user.service';
       <router-outlet></router-outlet>
     </div>
     <div class="container" *ngIf="!loaded">Loading...</div>
+    <div class="container">
+      <br>
+      <pre>{{ user | json }}</pre>
+    </div>
   `,
   styleUrls: ['./app.component.css']
 })

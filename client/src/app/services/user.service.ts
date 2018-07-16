@@ -2,17 +2,23 @@ import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from '../types';
 import { RequestService } from './request.service';
+import { Router } from '@angular/router';
 
 @Injectable()
 
 export class UserService {
-    constructor(private request: RequestService, private store: Store<AppState>) {}
+    constructor(
+        private request: RequestService,
+        private store: Store<AppState>,
+        private router: Router
+    ) {}
 
     signIn(email: string, password: string) {
         this.request.post('/user/signin', { email, password })
         .then(response => {
             this.store.dispatch({ type: 'SET_USER', user: response.user });
             localStorage.setItem('token', response.user.token);
+            this.router.navigate(['/']);
         })
         .catch(error => alert(error.message));
     }
@@ -38,5 +44,6 @@ export class UserService {
     logOut() {
         localStorage.removeItem('token');
         this.store.dispatch({ type: 'LOG_OUT' });
+        this.router.navigate(['/signin']);
     }
 }
