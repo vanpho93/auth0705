@@ -23,11 +23,11 @@ import { MustBeUserGuard } from './guards/must-be-user.guard';
 
 const routesConfig: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'signin', component: SignInComponent },
-  { path: 'signup', component: SignUpComponent },
-  { path: 'password', component: ForgotPasswordComponent },
-  { path: 'profile', component: ProfileComponent },
-  { path: 'friends', component: FriendsComponent },
+  { path: 'signin', component: SignInComponent, canActivate: [MustBeGuestGuard] },
+  { path: 'signup', component: SignUpComponent, canActivate: [MustBeGuestGuard] },
+  { path: 'password', component: ForgotPasswordComponent, canActivate: [MustBeGuestGuard] },
+  { path: 'profile', component: ProfileComponent, canActivate: [MustBeUserGuard] },
+  { path: 'friends', component: FriendsComponent, canActivate: [MustBeUserGuard] },
   { path: '**', component: PageNotFoundComponent }
 ];
 
