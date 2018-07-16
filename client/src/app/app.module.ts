@@ -12,6 +12,7 @@ import { HomeComponent } from './components/home.component';
 import { ForgotPasswordComponent } from './components/forgot-password.component';
 import { FriendsComponent } from './components/friends.component';
 import { SignUpComponent } from './components/sign-up.component';
+import { PageNotFoundComponent } from './components/page-not-found.component';
 
 import { NavComponent } from './components/nav.component';
 
@@ -27,6 +28,7 @@ const routesConfig: Routes = [
   { path: 'password', component: ForgotPasswordComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'friends', component: FriendsComponent },
+  { path: '**', component: PageNotFoundComponent }
 ];
 
 @NgModule({
@@ -38,7 +40,8 @@ const routesConfig: Routes = [
     ForgotPasswordComponent,
     FriendsComponent,
     SignUpComponent,
-    NavComponent
+    NavComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,

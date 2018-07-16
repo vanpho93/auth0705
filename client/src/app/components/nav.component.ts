@@ -9,16 +9,21 @@ import { Component } from '@angular/core';
           <a class="navbar-brand" href="#">Khoa Pham</a>
         </div>
         <ul class="nav navbar-nav">
-          <li class="active"><a href="/">Home</a></li>
-          <li><a routerLink="/signin">Sign In</a></li>
-          <li><a routerLink="/signup">Sign Up</a></li>
-          <li><a routerLink="/password">Forgot Password</a></li>
-          <li><a routerLink="/profile">Profile</a></li>
-          <li><a routerLink="/friends">Friends</a></li>
+            <li>
+                <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+                    Home
+                </a>
+            </li>
+          <li><a routerLink="/signin" routerLinkActive="active">Sign In</a></li>
+          <li><a routerLink="/signup" routerLinkActive="active">Sign Up</a></li>
+          <li><a routerLink="/password" routerLinkActive="active">Forgot Password</a></li>
+          <li><a routerLink="/profile" routerLinkActive="active">Profile</a></li>
+          <li><a routerLink="/friends" routerLinkActive="active">Friends</a></li>
         </ul>
       </div>
     </nav>
-    `
+    `,
+    styles: [` a.active { color: gray; font-weight: bold; } `]
 })
 
 export class NavComponent {}
