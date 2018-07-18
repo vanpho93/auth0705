@@ -17,6 +17,8 @@ import { NavComponent } from './components/nav.component';
 
 import { RequestService } from './services/request.service';
 import { UserService } from './services/user.service';
+import { StoryService } from './services/story.service';
+
 import { loadedReducer, userReducer } from './reducers';
 import { MustBeGuestGuard } from './guards/must-be-guest.guard';
 import { MustBeUserGuard } from './guards/must-be-user.guard';
@@ -51,7 +53,7 @@ const routesConfig: Routes = [
     RouterModule.forRoot(routesConfig),
     StoreModule.forRoot({ loaded: loadedReducer, user: userReducer })
   ],
-  providers: [RequestService, UserService, MustBeGuestGuard, MustBeUserGuard],
+  providers: [RequestService, UserService, MustBeGuestGuard, MustBeUserGuard, StoryService],
   bootstrap: [AppComponent]
 })
 
