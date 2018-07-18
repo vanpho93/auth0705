@@ -12,7 +12,7 @@ import { StoryService } from '../services/story.service';
             <a routerLink="/signup">Dang ky tai day.</a>
         </div>
         <div *ngIf="user">
-            <app-story *ngFor="let story of stories"></app-story>
+            <app-story *ngFor="let story of stories" [story]="story"></app-story>
         </div>
     `
 })
