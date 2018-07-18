@@ -5,7 +5,22 @@ export interface User {
     avatar: string;
 }
 
+export interface Comment {
+    _id: string;
+    content: string;
+    author: User;
+}
+
+export interface Story {
+    _id: string;
+    content: string;
+    fans: string[];
+    author: User;
+    comments: Comment[];
+}
+
 export interface AppState {
     loaded: boolean;
     user: User;
+    stories: Story[];
 }
