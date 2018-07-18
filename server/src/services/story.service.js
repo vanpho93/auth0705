@@ -14,7 +14,7 @@ class StoryService {
             throw new ServerError('CANNOT_FIND_USER', 404);
         }
         await story.save();
-        return story;
+        return Story.populate(story, { path: 'author', select: 'name email avatar' });
     }
 
     static async removeStory(idUser, idStory) {

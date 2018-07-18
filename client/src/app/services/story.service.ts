@@ -16,4 +16,10 @@ export class StoryService {
         .then(response => this.store.dispatch({ type: 'SET_STORIES', stories: response.stories }))
         .catch(error => console.log(error.message));
     }
+
+    createStory(content: string) {
+        this.request.post('/story', { content })
+        .then(response => this.store.dispatch({ type: 'ADD_STORY', story: response.story }))
+        .catch(error => alert(error.message));
+    }
 }

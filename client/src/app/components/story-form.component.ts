@@ -10,6 +10,7 @@ import { StoryService } from '../services/story.service';
             rows="5"
             placeholder="Enter your story"
             (keyUp.enter)="createStory();"
+            [(ngModel)]="txtContent"
         ></textarea>
         <br>
         <button class="btn btn-success" (click)="createStory();">Post</button>
@@ -18,7 +19,11 @@ import { StoryService } from '../services/story.service';
 })
 
 export class StoryFormComponent {
+    txtContent = '';
     constructor(private storyService: StoryService) {}
 
-    createStory() {}
+    createStory() {
+        this.storyService.createStory(this.txtContent);
+        this.txtContent = '';
+    }
 }
