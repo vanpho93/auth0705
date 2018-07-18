@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AppState, User } from './types';
+import { AppState, User, Story } from './types';
 import { Store } from '@ngrx/store';
 import { UserService } from './services/user.service';
 import { StoryService } from './services/story.service';
@@ -14,13 +14,14 @@ import { StoryService } from './services/story.service';
     <div class="container" *ngIf="!loaded">Loading...</div>
     <div class="container">
       <br>
-      <pre>{{ user | json }}</pre>
+      <pre>{{ stories | json }}</pre>
     </div>
   `,
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
   user: User;
+  stories: Story[];
   loaded: boolean;
   constructor(
     private userSerivce: UserService,
@@ -29,6 +30,7 @@ export class AppComponent {
   ) {
     this.store.select('user').subscribe(u => this.user = u);
     this.store.select('loaded').subscribe(l => this.loaded = l);
+    this.store.select('stories').subscribe(l => this.stories = l);
     this.userSerivce.check();
     this.storyService.getAllStories();
   }
