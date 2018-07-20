@@ -14,5 +14,9 @@ export function userReducer(state = null, action): User {
 export function storiesReducer(state: Story[] = [], action): Story[] {
     if (action.type === 'SET_STORIES') return action.stories;
     if (action.type === 'ADD_STORY') return [action.story, ...state];
+    if (action.type === 'LIKE_STORY') return state.map(story => {
+        if (story._id !== action._id) return story;
+        return { ...story, fans: action.fans };
+    });
     return state;
 }

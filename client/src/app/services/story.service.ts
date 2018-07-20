@@ -25,7 +25,10 @@ export class StoryService {
 
     likeStory(_id: string) {
         this.request.post(`/story/like/${_id}`, null)
-        .then(console.log)
+        .then(response => {
+            const action = { type: 'LIKE_STORY', _id, fans: response.story.fans };
+            this.store.dispatch(action);
+        })
         .catch(console.log);
     }
 }
