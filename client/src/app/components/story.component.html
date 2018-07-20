@@ -14,4 +14,10 @@
         [(ngModel)]="txtComment"
         (keyUp.enter)="createComment();"
     />
+    <div *ngFor="let comment of story.comments">
+        <p>
+            <span style="font-weight: bold">{{ comment.author.name }}:</span>
+            {{ comment.content }}
+        </p>
+    </div>
 </div>
