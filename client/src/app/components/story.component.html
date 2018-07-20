@@ -4,9 +4,14 @@
         <h5>{{story.author.name}}</h5>
     </div>
     <p>{{ story.content }}</p>
-    <hr>
     <a (click)="toggleLike();">
         <img *ngIf="shouldShowLikeIcon" class="like" src="https://vectors.pro/wp-content/uploads/2017/09/facebook-like-transparent-thumbs-down-vector-icon.png"/>
         {{ story.fans.length }} likes
     </a>
+    <input
+        class="form-control"
+        placeholder="Comment..."
+        [(ngModel)]="txtComment"
+        (keyUp.enter)="createComment();"
+    />
 </div>

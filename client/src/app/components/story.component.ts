@@ -32,6 +32,7 @@ import { AppState, User, Story } from '../types';
 export class StoryComponent {
     @Input() story: Story;
     user: User;
+    txtComment = '';
     constructor(private store: Store<AppState>, private storyService: StoryService) {
         this.store.select('user').subscribe(u => this.user = u);
     }
@@ -45,5 +46,10 @@ export class StoryComponent {
             return this.storyService.dislikeStory(this.story._id);
         }
         this.storyService.likeStory(this.story._id);
+    }
+
+    createComment() {
+        this.storyService.createComment(this.txtComment, this.story._id);
+        this.txtComment = '';
     }
 }

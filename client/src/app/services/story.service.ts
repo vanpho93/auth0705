@@ -40,4 +40,10 @@ export class StoryService {
         })
         .catch(console.log);
     }
+
+    createComment(content: string, idStory: string) {
+        this.request.post('/comment', { content, idStory })
+        .then(console.log)
+        .catch(console.log);
+    }
 }
