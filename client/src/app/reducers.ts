@@ -18,5 +18,9 @@ export function storiesReducer(state: Story[] = [], action): Story[] {
         if (story._id !== action._id) return story;
         return { ...story, fans: action.fans };
     });
+    if (action.type === 'ADD_COMMENT') return state.map(story => {
+        if (story._id !== action._id) return story;
+        return { ...story, comments: [...story.comments, action.comment] };
+    });
     return state;
 }

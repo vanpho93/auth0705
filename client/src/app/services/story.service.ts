@@ -43,7 +43,10 @@ export class StoryService {
 
     createComment(content: string, idStory: string) {
         this.request.post('/comment', { content, idStory })
-        .then(console.log)
+        .then(response => {
+            const action = { type: 'ADD_COMMENT', _id: idStory, comment: response.comment };
+            this.store.dispatch(action);
+        })
         .catch(console.log);
     }
 }

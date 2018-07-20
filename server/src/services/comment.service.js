@@ -13,7 +13,7 @@ class CommentService {
         const story = await Story.findByIdAndUpdate(idStory, updateObject);
         exist(story, 'CANNOT_FIND_STORY', 404);
         await comment.save();
-        return comment;
+        return Comment.populate(comment, { path: 'author', select: 'name' });
     }
 
     static async removeComment(idUser, idComment) {
