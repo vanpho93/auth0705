@@ -22,4 +22,10 @@ export class StoryService {
         .then(response => this.store.dispatch({ type: 'ADD_STORY', story: response.story }))
         .catch(error => alert(error.message));
     }
+
+    likeStory(_id: string) {
+        this.request.post(`/story/like/${_id}`, null)
+        .then(console.log)
+        .catch(console.log);
+    }
 }

@@ -32,11 +32,15 @@ import { AppState, User, Story } from '../types';
 export class StoryComponent {
     @Input() story: Story;
     user: User;
-    constructor(private store: Store<AppState>) {
+    constructor(private store: Store<AppState>, private storyService: StoryService) {
         this.store.select('user').subscribe(u => this.user = u);
     }
 
     get shouldShowLikeIcon(): boolean {
         return this.story.fans.includes(this.user._id);
+    }
+
+    toggleLike() {
+        this.storyService.likeStory(this.story._id);
     }
 }

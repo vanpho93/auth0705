@@ -5,7 +5,7 @@
     </div>
     <p>{{ story.content }}</p>
     <hr>
-    <a>
+    <a (click)="toggleLike();">
         <img *ngIf="shouldShowLikeIcon" class="like" src="https://vectors.pro/wp-content/uploads/2017/09/facebook-like-transparent-thumbs-down-vector-icon.png"/>
         {{ story.fans.length }} likes
     </a>
