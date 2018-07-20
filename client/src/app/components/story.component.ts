@@ -41,6 +41,10 @@ export class StoryComponent {
         return this.story.fans.includes(this.user._id);
     }
 
+    get isStoryOwner(): boolean {
+        return this.story.author._id === this.user._id;
+    }
+
     toggleLike() {
         if (this.shouldShowLikeIcon) {
             return this.storyService.dislikeStory(this.story._id);
@@ -54,6 +58,7 @@ export class StoryComponent {
     }
 
     removeStory() {
+        if (!confirm('Are you sure?')) return;
         this.storyService.removeStory(this.story._id);
     }
 }

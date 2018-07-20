@@ -22,5 +22,8 @@ export function storiesReducer(state: Story[] = [], action): Story[] {
         if (story._id !== action._id) return story;
         return { ...story, comments: [...story.comments, action.comment] };
     });
+    if (action.type === 'REMOVE_STORY') {
+        return state.filter(story => story._id !== action._id);
+    }
     return state;
 }

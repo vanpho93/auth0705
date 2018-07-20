@@ -52,8 +52,8 @@ export class StoryService {
 
     removeStory(_id: string) {
         this.request.delete('/story/' + _id)
-        .then(response => {
-            console.log(response);
+        .then(() => {
+            this.store.dispatch({ type: 'REMOVE_STORY', _id });
         })
         .catch(console.log);
     }
