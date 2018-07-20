@@ -2,6 +2,7 @@
     <div class="header">
         <img src="{{story.author.avatar}}"/>
         <h5>{{story.author.name}}</h5>
+        <a (click)="removeStory();">Remove</a>
     </div>
     <p>{{ story.content }}</p>
     <a (click)="toggleLike();">

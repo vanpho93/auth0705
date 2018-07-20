@@ -52,4 +52,8 @@ export class StoryComponent {
         this.storyService.createComment(this.txtComment, this.story._id);
         this.txtComment = '';
     }
+
+    removeStory() {
+        this.storyService.removeStory(this.story._id);
+    }
 }

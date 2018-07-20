@@ -49,4 +49,12 @@ export class StoryService {
         })
         .catch(console.log);
     }
+
+    removeStory(_id: string) {
+        this.request.delete('/story/' + _id)
+        .then(response => {
+            console.log(response);
+        })
+        .catch(console.log);
+    }
 }
