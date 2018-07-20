@@ -26,7 +26,16 @@ export class StoryService {
     likeStory(_id: string) {
         this.request.post(`/story/like/${_id}`, null)
         .then(response => {
-            const action = { type: 'LIKE_STORY', _id, fans: response.story.fans };
+            const action = { type: 'UPDATE_LIKES_STATE', _id, fans: response.story.fans };
+            this.store.dispatch(action);
+        })
+        .catch(console.log);
+    }
+
+    dislikeStory(_id: string) {
+        this.request.post(`/story/dislike/${_id}`, null)
+        .then(response => {
+            const action = { type: 'UPDATE_LIKES_STATE', _id, fans: response.story.fans };
             this.store.dispatch(action);
         })
         .catch(console.log);

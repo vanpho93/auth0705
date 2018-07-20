@@ -41,6 +41,9 @@ export class StoryComponent {
     }
 
     toggleLike() {
+        if (this.shouldShowLikeIcon) {
+            return this.storyService.dislikeStory(this.story._id);
+        }
         this.storyService.likeStory(this.story._id);
     }
 }
