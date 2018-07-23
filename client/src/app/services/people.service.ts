@@ -16,4 +16,10 @@ export class PeopleService {
         .then(response => this.store.dispatch({ type: 'SET_PEOPLE', people: response.users }))
         .catch(error => console.log(error.message));
     }
+
+    addFriend(_id: string) {
+        this.request.post('/friend/add/' + _id, null)
+        .then(response => console.log(response))
+        .catch(error => console.log(error.message));
+    }
 }

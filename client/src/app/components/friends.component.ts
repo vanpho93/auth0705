@@ -39,14 +39,15 @@ import { AppState, People } from '../types';
                 <img src="{{user.avatar}}" />
                 <h4>{{user.name}}</h4>
             </div>
-            <button class="btn btn-success">Add Friend</button>
-            <button class="btn btn-success">Remove Friend</button>
+            <button class="btn btn-success" (click)="addFriend(user._id);">
+                Add Friend
+            </button>
         </div>
     `,
     styles: [`
         .header h4 { float: left; margin-left: 10px; }
         .header img{float: left;}
-        div.header { width: 200px; height: 100px; margin-bottom: 10px; }
+        div.header { width: 300px; height: 100px; margin-bottom: 10px; }
         .btn-success{
             color: #fff;
             background-color: #449d44;
@@ -69,5 +70,9 @@ export class FriendsComponent {
     constructor(private peopleSerive: PeopleService, private store: Store<AppState>) {
         this.peopleSerive.getPeople();
         this.store.select('people').subscribe(p => this.people = p);
+    }
+
+    addFriend(_id: string) {
+        this.peopleSerive.addFriend(_id);
     }
 }
