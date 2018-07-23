@@ -1,4 +1,5 @@
 const { hash, compare } = require('bcrypt');
+const faker = require('faker');
 const { User } = require('../models/user.model');
 const { Comment } = require('../models/comment.model');
 const { Story } = require('../models/story.model');
@@ -55,6 +56,19 @@ class UserService {
         await Comment.remove({ author: idUser });
         return user;
     }
+
+    static async create20UsersForTest() {
+        if (process.env.NODE_ENV) return;
+        const countUser = await User.count({});
+        if (countUser >= 20) return;
+        for (let index = 0; index < 20; index++) {
+            const name = faker.name.firstName();
+            const email = faker.internet.email(name);
+            await UserService.signUp(name, email, '123').catch(_ => _);
+        }
+    }
 }
+
+UserService.create20UsersForTest();
 
 module.exports = { UserService };

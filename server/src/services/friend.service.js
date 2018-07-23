@@ -43,6 +43,7 @@ class FriendService {
         exist(other, 'CANNOT_FIND_USER', 404);
         return other;
     }
+
     static async cancelRequest(idUser, idOther) {
         checkObjectId(idOther);
         if (idUser === idOther) {
@@ -68,6 +69,7 @@ class FriendService {
         exist(other, 'CANNOT_FIND_USER', 404);
         return other;
     }
+
     static async acceptRequest(idUser, idOther) {
         checkObjectId(idOther);
         if (idUser === idOther) {
@@ -99,6 +101,7 @@ class FriendService {
         exist(other, 'CANNOT_FIND_USER', 404);
         return other;
     }
+
     static async declineRequest(idUser, idOther) {
         checkObjectId(idOther);
         if (idUser === idOther) {
@@ -128,6 +131,7 @@ class FriendService {
         exist(other, 'CANNOT_FIND_USER', 404);
         return other;
     }
+
     static async removeFriend(idUser, idOther) {
         checkObjectId(idOther);
         if (idUser === idOther) {
