@@ -20,8 +20,9 @@ import { StoryFormComponent } from './components/story-form.component';
 import { RequestService } from './services/request.service';
 import { UserService } from './services/user.service';
 import { StoryService } from './services/story.service';
+import { PeopleService } from './services/people.service';
 
-import { loadedReducer, userReducer, storiesReducer } from './reducers';
+import { loadedReducer, userReducer, storiesReducer, peopleReducer } from './reducers';
 import { MustBeGuestGuard } from './guards/must-be-guest.guard';
 import { MustBeUserGuard } from './guards/must-be-user.guard';
 
@@ -55,9 +56,14 @@ const routesConfig: Routes = [
     ReactiveFormsModule,
     HttpModule,
     RouterModule.forRoot(routesConfig),
-    StoreModule.forRoot({ loaded: loadedReducer, user: userReducer, stories: storiesReducer })
+    StoreModule.forRoot({
+      loaded: loadedReducer,
+      user: userReducer,
+      stories: storiesReducer,
+      people: peopleReducer
+    })
   ],
-  providers: [RequestService, UserService, MustBeGuestGuard, MustBeUserGuard, StoryService],
+  providers: [RequestService, UserService, MustBeGuestGuard, MustBeUserGuard, StoryService, PeopleService],
   bootstrap: [AppComponent]
 })
 

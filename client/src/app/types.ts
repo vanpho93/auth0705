@@ -23,4 +23,12 @@ export interface AppState {
     loaded: boolean;
     user: User;
     stories: Story[];
+    people: People;
+}
+
+export interface People {
+    friends: User[];
+    sentRequests: User[];
+    incommingRequests: User[];
+    orthers: User[];
 }
