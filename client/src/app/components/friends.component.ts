@@ -6,11 +6,38 @@ import { AppState, People } from '../types';
 @Component({
     selector: 'app-friends',
     template: `
-        <h4>Friends component</h4>
-        <div class="user">
+        <h4>Friends</h4>
+        <div class="user" *ngFor="let user of people.friends">
             <div class="header">
-                <img src="https://s3.amazonaws.com/uifaces/faces/twitter/antonyzotov/128.jpg" />
-                <h4>Abcd</h4>
+                <img src="{{user.avatar}}" />
+                <h4>{{user.name}}</h4>
+            </div>
+            <button class="btn btn-success">Add Friend</button>
+            <button class="btn btn-success">Remove Friend</button>
+        </div>
+        <h4>Incomming requests</h4>
+        <div class="user" *ngFor="let user of people.incommingRequests">
+            <div class="header">
+                <img src="{{user.avatar}}" />
+                <h4>{{user.name}}</h4>
+            </div>
+            <button class="btn btn-success">Add Friend</button>
+            <button class="btn btn-success">Remove Friend</button>
+        </div>
+        <h4>Sent requests</h4>
+        <div class="user" *ngFor="let user of people.sentRequests">
+            <div class="header">
+                <img src="{{user.avatar}}" />
+                <h4>{{user.name}}</h4>
+            </div>
+            <button class="btn btn-success">Add Friend</button>
+            <button class="btn btn-success">Remove Friend</button>
+        </div>
+        <h4>Others</h4>
+        <div class="user" *ngFor="let user of people.others">
+            <div class="header">
+                <img src="{{user.avatar}}" />
+                <h4>{{user.name}}</h4>
             </div>
             <button class="btn btn-success">Add Friend</button>
             <button class="btn btn-success">Remove Friend</button>
@@ -30,8 +57,8 @@ import { AppState, People } from '../types';
 
         .user {
             background-color: #E9E9E9;
-            margin: 10px;
-            padding: 10px;
+            margin: 20px;
+            padding: 20px;
             border-radius: 10px;
         }
     `]
