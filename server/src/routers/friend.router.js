@@ -5,6 +5,12 @@ const { mustBeUser } = require('./mustBeUser.middleware');
 const friendRouter = express.Router();
 friendRouter.use(mustBeUser);
 
+friendRouter.get('/', (req, res) => {
+    FriendService.getFriends(req.idUser)
+    .then(users => res.send({ success: true, users }))
+    .catch(res.onError);
+});
+
 friendRouter.post('/add/:idOther', (req, res) => {
     FriendService.addFriend(req.idUser, req.params.idOther)
     .then(user => res.send({ success: true, user }))

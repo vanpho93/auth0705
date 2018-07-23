@@ -3,6 +3,21 @@ const { ServerError, exist } = require('../models/server-error.model');
 const { checkObjectId } = require('../helpers/checkObjectId');
 
 class FriendService {
+    static async getFriends(idUser) {
+        checkObjectId(idUser);
+        const user = await User.findById(idUser)
+        .populate('friends', 'name avatar email')
+        .populate('sentRequests', 'name avatar email')
+        .populate('incommingRequests', 'name avatar email');
+        const { incommingRequests, friends, sentRequests } = user;
+        const knownUsers = incommingRequests.map(u => u._id)
+        .concat(friends.map(u => u._id))
+        .concat(sentRequests.map(u => u._id))
+        .concat(idUser);
+        const others = await User.find({ _id: { $nin: knownUsers } }).select('name avatar email');
+        return { friends, sentRequests, incommingRequests, others };
+    }
+
     static async addFriend(idUser, idOther) {
         checkObjectId(idOther);
         if (idUser === idOther) {
