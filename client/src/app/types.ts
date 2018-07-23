@@ -30,5 +30,5 @@ export interface People {
     friends: User[];
     sentRequests: User[];
     incommingRequests: User[];
-    orthers: User[];
+    others: User[];
 }

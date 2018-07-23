@@ -30,12 +30,17 @@ export function storiesReducer(state: Story[] = [], action): Story[] {
 
 const defaultPeople: People = {
     friends: [],
-    orthers: [],
+    others: [],
     incommingRequests: [],
     sentRequests: []
 };
 
 export function peopleReducer(state = defaultPeople, action) {
     if (action.type === 'SET_PEOPLE') return action.people;
+    if (action.type === 'ADD_FRIEND') {
+        const others = state.others.filter(u => u._id !== action.user._id);
+        const sentRequests = [action.user, ...state.sentRequests];
+        return { ...state, others, sentRequests };
+    }
     return state;
 }

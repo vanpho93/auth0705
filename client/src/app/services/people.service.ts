@@ -19,7 +19,10 @@ export class PeopleService {
 
     addFriend(_id: string) {
         this.request.post('/friend/add/' + _id, null)
-        .then(response => console.log(response))
+        .then(response => {
+            const action = { type: 'ADD_FRIEND', user: response.user };
+            this.store.dispatch(action);
+        })
         .catch(error => console.log(error.message));
     }
 }
