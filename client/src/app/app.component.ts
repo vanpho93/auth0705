@@ -5,14 +5,17 @@ import { UserService } from './services/user.service';
 
 @Component({
   selector: 'app-root',
+  // template: `
+  //   <app-nav *ngIf="loaded"></app-nav>
+  //   <div class="container" *ngIf="loaded">
+  //     <router-outlet></router-outlet>
+  //   </div>
+  //   <div class="container" *ngIf="!loaded">Loading...</div>
+  // `,
+  styleUrls: ['./app.component.css'],
   template: `
-    <app-nav *ngIf="loaded"></app-nav>
-    <div class="container" *ngIf="loaded">
-      <router-outlet></router-outlet>
-    </div>
-    <div class="container" *ngIf="!loaded">Loading...</div>
-  `,
-  styleUrls: ['./app.component.css']
+    <app-avatar></app-avatar>
+  `
 })
 
 export class AppComponent {
@@ -22,8 +25,8 @@ export class AppComponent {
     private userSerivce: UserService,
     private store: Store<AppState>,
   ) {
-    this.store.select('user').subscribe(u => this.user = u);
-    this.store.select('loaded').subscribe(l => this.loaded = l);
-    this.userSerivce.check();
+    // this.store.select('user').subscribe(u => this.user = u);
+    // this.store.select('loaded').subscribe(l => this.loaded = l);
+    // this.userSerivce.check();
   }
 }
